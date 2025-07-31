@@ -1,0 +1,323 @@
+{
+  "scripts": [
+    {
+      "name": "Réparer Windows Update",
+      "description": "Corrige les problèmes liés à Windows Update.",
+      "icon": "ph-windows-logo",
+      "command": "net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver"
+    },
+    {
+      "name": "Réinitialiser TCP/IP",
+      "description": "Répare les problèmes de connexion réseau.",
+      "icon": "ph-globe-hemisphere-west",
+      "command": "netsh int ip reset && netsh winsock reset && ipconfig /flushdns"
+    },
+    {
+      "name": "Vérifier et réparer les fichiers système",
+      "description": "Utilise SFC pour réparer les fichiers système corrompus.",
+      "icon": "ph-shield-check",
+      "command": "sfc /scannow"
+    },
+    {
+      "name": "Réparer l’image Windows (DISM)",
+      "description": "Utilise DISM pour réparer l’image système Windows.",
+      "icon": "ph-image-square",
+      "command": "DISM /Online /Cleanup-Image /RestoreHealth"
+    },
+    {
+      "name": "Nettoyer le disque",
+      "description": "Lance l’outil de nettoyage de disque Windows.",
+      "icon": "ph-broom",
+      "command": "cleanmgr"
+    },
+    {
+      "name": "Réinitialiser les paramètres réseau",
+      "description": "Réinitialise tous les paramètres réseau aux valeurs par défaut.",
+      "icon": "ph-wifi-high",
+      "command": "netsh int ip reset && netsh winsock reset && ipconfig /release && ipconfig /renew && ipconfig /flushdns"
+    },
+    {
+      "name": "Réparer le démarrage",
+      "description": "Répare les fichiers de démarrage de Windows.",
+      "icon": "ph-rocket-launch",
+      "command": "bootrec /fixmbr && bootrec /fixboot && bootrec /scanos && bootrec /rebuildbcd"
+    },
+    {
+      "name": "Vider le cache du Microsoft Store",
+      "description": "Résout les problèmes du Microsoft Store.",
+      "icon": "ph-storefront",
+      "command": "wsreset.exe"
+    },
+    {
+      "name": "Réinitialiser les paramètres du pare-feu",
+      "description": "Restaure les paramètres par défaut du pare-feu Windows.",
+      "icon": "ph-fire",
+      "command": "netsh advfirewall reset"
+    },
+    {
+      "name": "Réparer les associations de fichiers .exe",
+      "description": "Corrige les problèmes d’ouverture des fichiers .exe.",
+      "icon": "ph-file-arrow-down",
+      "command": "assoc .exe=exefile && ftype exefile=\"%1\" %*"
+    },
+    {
+      "name": "Activer le mode sans échec",
+      "description": "Configure le démarrage en mode sans échec au prochain redémarrage.",
+      "icon": "ph-warning",
+      "command": "bcdedit /set {default} safeboot minimal"
+    },
+    {
+      "name": "Désactiver le mode sans échec",
+      "description": "Annule le démarrage automatique en mode sans échec.",
+      "icon": "ph-check-circle",
+      "command": "bcdedit /deletevalue {default} safeboot"
+    },
+    {
+      "name": "Réparer les services Windows essentiels",
+      "description": "Redémarre les services critiques de Windows.",
+      "icon": "ph-cpu",
+      "command": "net start wuauserv && net start cryptSvc && net start bits && net start msiserver"
+    },
+    {
+      "name": "Réinitialiser Windows Defender",
+      "description": "Répare et redémarre Windows Defender.",
+      "icon": "ph-shield",
+      "command": "PowerShell -Command \"Set-MpPreference -DisableRealtimeMonitoring $false\""
+    },
+    {
+      "name": "Réparer le menu Démarrer",
+      "description": "Répare les problèmes du menu Démarrer.",
+      "icon": "ph-list-magnifying-glass",
+      "command": "PowerShell -Command \"Get-AppXPackage -AllUsers | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register '$($_.InstallLocation)\\AppXManifest.xml'}\""
+    },
+    {
+      "name": "Réparer les applications Windows",
+      "description": "Réinstalle toutes les applications Windows Store.",
+      "icon": "ph-app-window",
+      "command": "PowerShell -Command \"Get-AppxPackage -AllUsers| Foreach {Add-AppxPackage -DisableDevelopmentMode -Register '$($_.InstallLocation)\\AppXManifest.xml'}\""
+    },
+    {
+      "name": "Réparer le Bluetooth",
+      "description": "Redémarre le service Bluetooth.",
+      "icon": "ph-bluetooth",
+      "command": "net stop bthserv && net start bthserv"
+    },
+    {
+      "name": "Réparer l’audio",
+      "description": "Redémarre les services audio Windows.",
+      "icon": "ph-speaker-high",
+      "command": "net stop audiosrv && net start audiosrv"
+    },
+    {
+      "name": "Réparer l’impression",
+      "description": "Redémarre le service de spouleur d’impression.",
+      "icon": "ph-printer",
+      "command": "net stop spooler && net start spooler"
+    },
+    {
+      "name": "Réparer la résolution DNS",
+      "description": "Vide le cache DNS et renouvelle l’adresse IP.",
+      "icon": "ph-globe",
+      "command": "ipconfig /flushdns && ipconfig /registerdns && ipconfig /release && ipconfig /renew"
+    },
+    {
+      "name": "Vérifier le disque (CHKDSK)",
+      "description": "Analyse et répare les erreurs du disque dur. Peut résoudre des problèmes de démarrage ou d'écran bleu.",
+      "icon": "ph-hard-drive",
+      "command": "chkdsk c: /f /r"
+    },
+    {
+      "name": "Réparer le registre Windows",
+      "description": "Répare les erreurs courantes du registre qui peuvent empêcher Windows de démarrer.",
+      "icon": "ph-database",
+      "command": "DISM /Online /Cleanup-Image /RestoreHealth && sfc /scannow"
+    },
+    {
+      "name": "Désactiver le redémarrage automatique sur échec",
+      "description": "Permet de voir le message d'erreur complet lors d'un écran bleu.",
+      "icon": "ph-warning",
+      "command": "wmic RecoverOS set AutoReboot = False"
+    },
+    {
+      "name": "Réparer les pilotes corrompus",
+      "description": "Supprime les pilotes problématiques pour permettre un démarrage propre.",
+      "icon": "ph-device-mobile",
+      "command": "pnputil /enum-drivers && pnputil /delete-driver <nom_pilote> /uninstall /force"
+    },
+    {
+      "name": "Réparer le MBR (secteur de démarrage)",
+      "description": "Répare le Master Boot Record, utile si Windows ne démarre plus.",
+      "icon": "ph-rocket-launch",
+      "command": "bootrec /fixmbr && bootrec /fixboot"
+    },
+    {
+      "name": "Réparer la table de partition (BCD)",
+      "description": "Reconstruit la configuration de démarrage de Windows.",
+      "icon": "ph-list-magnifying-glass",
+      "command": "bootrec /rebuildbcd"
+    },
+    {
+      "name": "Désactiver les applications de démarrage",
+      "description": "Désactive tous les programmes non-Microsoft au démarrage (mode minimal).",
+      "icon": "ph-power",
+      "command": "msconfig"
+    },
+    {
+      "name": "Réparer les services système critiques",
+      "description": "Redémarre les services essentiels pour le démarrage de Windows.",
+      "icon": "ph-cpu",
+      "command": "net start wuauserv && net start cryptSvc && net start bits && net start msiserver"
+    },
+    {
+      "name": "Réparer le démarrage (MBR/BCD)",
+      "description": "Répare le secteur de démarrage et la configuration du démarrage Windows. À utiliser si Windows ne démarre plus.",
+      "icon": "ph-rocket-launch",
+      "command": "bootrec /fixmbr && bootrec /fixboot && bootrec /scanos && bootrec /rebuildbcd"
+    },
+    {
+      "name": "Vérifier et réparer le disque (CHKDSK)",
+      "description": "Analyse et répare les erreurs du disque dur. Peut résoudre des problèmes de démarrage ou d'écran bleu.",
+      "icon": "ph-hard-drive",
+      "command": "chkdsk c: /f /r"
+    },
+    {
+      "name": "Réparer les fichiers système (SFC)",
+      "description": "Vérifie et répare les fichiers système corrompus.",
+      "icon": "ph-shield-check",
+      "command": "sfc /scannow"
+    },
+    {
+      "name": "Réparer l’image Windows (DISM)",
+      "description": "Répare l’image système Windows. À utiliser si SFC ne suffit pas.",
+      "icon": "ph-database",
+      "command": "DISM /Online /Cleanup-Image /RestoreHealth"
+    },
+    {
+      "name": "Réinitialiser les paramètres réseau",
+      "description": "Réinitialise la pile TCP/IP et les paramètres réseau.",
+      "icon": "ph-globe",
+      "command": "netsh int ip reset && netsh winsock reset"
+    }
+  ],
+  "tools": [
+    {
+      "name": "DISM Tool",
+      "description": "Outil officiel Microsoft pour réparer l'image système.",
+      "icon": "ph-wrench",
+      "url": "https://www.microsoft.com/fr-fr/software-download/windows10"
+    },
+    {
+      "name": "Visual C++ Redistributable",
+      "description": "Bibliothèques nécessaires pour exécuter des applications.",
+      "icon": "ph-brackets-curly",
+      "url": "https://aka.ms/vs/17/release/vc_redist.x64.exe"
+    },
+    {
+      "name": "Microsoft .NET Framework",
+      "description": "Composant essentiel pour de nombreuses applications Windows.",
+      "icon": "ph-code",
+      "url": "https://dotnet.microsoft.com/fr-fr/download/dotnet-framework"
+    },
+    {
+      "name": "Windows Malicious Software Removal Tool",
+      "description": "Outil Microsoft pour supprimer les logiciels malveillants.",
+      "icon": "ph-bug-beetle",
+      "url": "https://www.microsoft.com/fr-fr/download/malicious-software-removal-tool-details.aspx"
+    },
+    {
+      "name": "Autoruns",
+      "description": "Analyse et gère les programmes qui se lancent au démarrage.",
+      "icon": "ph-list-checks",
+      "url": "https://docs.microsoft.com/fr-fr/sysinternals/downloads/autoruns"
+    },
+    {
+      "name": "Process Explorer",
+      "description": "Gestionnaire de tâches avancé de Sysinternals.",
+      "icon": "ph-activity",
+      "url": "https://docs.microsoft.com/fr-fr/sysinternals/downloads/process-explorer"
+    },
+    {
+      "name": "CrystalDiskInfo",
+      "description": "Surveille l’état de santé de vos disques durs.",
+      "icon": "ph-hard-drive",
+      "url": "https://crystalmark.info/en/software/crystaldiskinfo/"
+    },
+    {
+      "name": "MemTest86",
+      "description": "Testez la mémoire vive (RAM) de votre PC.",
+      "icon": "ph-memory",
+      "url": "https://www.memtest86.com/"
+    },
+    {
+      "name": "CCleaner",
+      "description": "Nettoie les fichiers inutiles et optimise Windows.",
+      "icon": "ph-broom",
+      "url": "https://www.ccleaner.com/fr-fr/ccleaner/download"
+    },
+    {
+      "name": "Revo Uninstaller",
+      "description": "Désinstalle proprement les programmes récalcitrants.",
+      "icon": "ph-trash",
+      "url": "https://www.revouninstaller.com/fr/"
+    },
+    {
+      "name": "7-Zip",
+      "description": "Outil de compression et décompression de fichiers.",
+      "icon": "ph-archive-box",
+      "url": "https://www.7-zip.org/"
+    },
+    {
+      "name": "HWMonitor",
+      "description": "Surveille les températures et tensions de votre PC.",
+      "icon": "ph-thermometer",
+      "url": "https://www.cpuid.com/softwares/hwmonitor.html"
+    },
+    {
+      "name": "Speccy",
+      "description": "Affiche les informations détaillées sur votre matériel.",
+      "icon": "ph-monitor",
+      "url": "https://www.ccleaner.com/fr-fr/speccy"
+    },
+    {
+      "name": "Driver Booster",
+      "description": "Met à jour automatiquement vos pilotes.",
+      "icon": "ph-arrow-clockwise",
+      "url": "https://www.iobit.com/fr/driver-booster.php"
+    },
+    {
+      "name": "BlueScreenView",
+      "description": "Analyse les fichiers de crash (minidump) pour identifier la cause des écrans bleus (BSOD) et les pilotes fautifs.",
+      "url": "https://www.nirsoft.net/utils/blue_screen_view.html"
+    },
+    {
+      "name": "WhoCrashed",
+      "description": "Outil d’analyse avancée des crashs Windows. Donne des explications claires sur les causes des BSOD.",
+      "url": "https://www.resplendence.com/whocrashed"
+    },
+    {
+      "name": "Windows Memory Diagnostic",
+      "description": "Teste la mémoire vive (RAM) pour détecter les erreurs matérielles responsables de plantages.",
+      "url": "https://support.microsoft.com/fr-fr/windows/diagnostiquer-les-probl%C3%A8mes-de-m%C3%A9moire-de-votre-ordinateur-2f7bf0b2-5c62-8e6e-dae4-6b6b6e3b5c6e"
+    },
+    {
+      "name": "MemTest86+",
+      "description": "Outil externe pour tester la RAM en profondeur. Idéal pour détecter les barrettes défectueuses.",
+      "url": "https://www.memtest.org/"
+    },
+    {
+      "name": "Display Driver Uninstaller (DDU)",
+      "description": "Désinstalle complètement les pilotes graphiques. Utile en cas d’écran bleu ou noir lié à la carte graphique.",
+      "url": "https://www.wagnardsoft.com/"
+    },
+    {
+      "name": "Windows Repair (Tweaking.com)",
+      "description": "Répare de nombreux problèmes Windows (fichiers système, registre, services, etc.) en quelques clics.",
+      "url": "https://www.tweaking.com/content/page/windows_repair_all_in_one.html"
+    },
+    {
+      "name": "Easy Recovery Essentials",
+      "description": "Répare automatiquement les problèmes de démarrage et les erreurs critiques Windows.",
+      "url": "https://neosmart.net/EasyRE/"
+    }
+  ]
+}

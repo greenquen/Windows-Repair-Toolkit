@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outils | Windows Repair Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    :root {
+      --bg-main: #181c24;
+      --glass: rgba(24,28,36,0.7);
+      --glass-blur: blur(16px);
+      --accent: #00eaff;
+      --accent2: #ff4081;
+      --white: #fff;
+    }
+    body {
+      background: linear-gradient(135deg, #181c24 0%, #23263a 100%);
+      min-height: 100vh;
+      font-family: 'Poppins', Arial, sans-serif;
+      color: var(--white);
+      margin: 0;
+      padding: 0;
+    }
+    .particles {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.13;
+      filter: blur(2px);
+      animation: particleMove 14s linear infinite;
+      background: radial-gradient(circle, #fff 0%, var(--accent2) 60%, #512da8 100%);
+    }
+    @keyframes particleMove {
+      0% { transform: translateY(0) scale(1);}
+      100% { transform: translateY(-120vh) scale(1.2);}
+    }
+    .main-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 56px;
+      padding: 0 32px;
+      background: rgba(24,28,36,0.85);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 16px 0 #00eaff22;
+      border-bottom: 1.5px solid #23263a;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: var(--white);
+      font-size: 1.2em;
+      letter-spacing: 1px;
+    }
+    nav {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .nav-btn {
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 22px;
+      font-size: 1em;
+      font-weight: 600;
+      margin: 0 4px;
+      box-shadow: 0 2px 16px #00eaff44;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      outline: none;
+      transition: background 0.4s, transform 0.2s, box-shadow 0.3s;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      background: linear-gradient(270deg, var(--accent2) 0%, var(--accent) 100%);
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 4px 32px #00eaffaa;
+    }
+    .nav-btn:active {
+      filter: brightness(1.2);
+      box-shadow: 0 2px 8px #00eaff77;
+    }
+    .dashboard {
+      padding: 40px 0 0 0;
+      text-align: center;
+      z-index: 2;
+      position: relative;
+    }
+    .dashboard h1 {
+      color: var(--accent2);
+      text-shadow: 0 2px 16px #512da8cc;
+      margin-bottom: 24px;
+      font-size: 2.2em;
+      font-weight: 700;
+    }
+    .dashboard input {
+      width: 80%;
+      max-width: 500px;
+      padding: 12px;
+      margin: 20px 0;
+      border: 1px solid #23263a;
+      border-radius: 8px;
+      font-size: 1em;
+      background: var(--glass);
+      color: #fff;
+      box-shadow: 0 2px 16px #ff408144;
+      transition: box-shadow 0.3s, background 0.3s;
+      backdrop-filter: var(--glass-blur);
+    }
+    .dashboard input:focus {
+      box-shadow: 0 0 0 3px var(--accent2);
+      background: #23263a;
+      outline: none;
+    }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    .card, .dashboard-card {
+      background: var(--glass);
+      backdrop-filter: var(--glass-blur);
+      padding: 32px 26px;
+      width: 280px;
+      border-radius: 16px;
+      box-shadow: 0 4px 32px #00eaff44, 0 0 24px #23263a44;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: left;
+      position: relative;
+      border: 1.5px solid var(--accent2);
+      color: #fff;
+      animation: cardPop 1s cubic-bezier(.25,1.7,.45,.87) both;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .card i, .dashboard-card i {
+      font-size: 2em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .card:hover, .dashboard-card:hover {
+      transform: translateY(-14px) scale(1.04) rotate(-1deg);
+      box-shadow: 0 8px 48px #00eaffcc, 0 0 32px #23263acc;
+      border-color: #fff;
+    }
+    .card h3, .dashboard-card h3 {
+      font-size: 1.25em;
+      margin-bottom: 8px;
+      color: var(--accent2);
+      text-shadow: 0 2px 8px #00eaffaa;
+    }
+    .card p, .dashboard-card p {
+      color: #fff;
+      font-size: 1.05em;
+      text-shadow: 0 2px 8px #23263a44;
+    }
+    .card button, .dashboard-card button {
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 22px;
+      font-size: 1em;
+      font-weight: 600;
+      margin-top: 12px;
+      box-shadow: 0 2px 16px #00eaff44;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+      outline: none;
+    }
+    .card button:hover, .dashboard-card button:hover {
+      background: linear-gradient(270deg, var(--accent2) 0%, var(--accent) 100%);
+      color: #fff;
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 4px 32px #00eaffaa;
+    }
+    @keyframes cardPop {
+      0% { opacity: 0; transform: scale(0.92) translateY(40px);}
+      100% { opacity: 1; transform: scale(1) translateY(0);}
+    }
+    footer {
+      text-align: center;
+      padding: 24px 10px;
+      background: rgba(24,28,36,0.85);
+      border-top: 1px solid var(--accent2);
+      margin-top: 60px;
+      color: #fff;
+      font-size: 1em;
+      letter-spacing: 1px;
+      box-shadow: 0 -2px 24px #23263a44;
+      backdrop-filter: blur(8px);
+    }
+    /* Loader */
+    #loader {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(24,28,36,0.85);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+    }
+    #loader .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid var(--accent);
+      border-top: 6px solid var(--accent2);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    @media (max-width: 700px) {
+      .main-header { padding: 0 10px; height: 48px; }
+      .logo { font-size: 1em; }
+      nav { gap: 6px; }
+      .dashboard, .features { padding: 18px 4vw; }
+      .card { width: 98vw; max-width: 360px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" aria-hidden="true"></div>
+  <header class="main-header">
+    <div class="logo">
+      <i class="ph ph-windows-logo"></i>
+      <span>Windows Repair</span>
+    </div>
+    <nav>
+      <button class="nav-btn" onclick="window.location.href='index.html'">Accueil</button>
+      <button class="nav-btn" onclick="window.location.href='scripts.html'">Scripts</button>
+      <button class="nav-btn active" onclick="window.location.href='tools.html'">Outils</button>
+      <button class="nav-btn" onclick="window.location.href='ai-assistant.html'">Assistant IA</button>
+    </nav>
+  </header>
+
+  <main class="dashboard">
+    <h1>Outils Officiels</h1>
+    <input type="text" id="search" placeholder="Rechercher un outil..." />
+
+    <div id="tools-container" class="grid"></div>
+  </main>
+
+  <footer>
+    <p>© 2025 Windows Repair Platform</p>
+  </footer>
+
+  <!-- Loader animé -->
+  <div id="loader"><div class="spinner"></div></div>
+
+  <script>
+    // Loader animé au changement de page
+    function showLoader() {
+      document.getElementById('loader').style.display = 'flex';
+    }
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', showLoader);
+    });
+
+    // Particules roses animées
+    const particles = document.querySelector('.particles');
+    for(let i=0;i<18;i++){
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.width = p.style.height = (Math.random()*32+24)+'px';
+      p.style.left = (Math.random()*100)+'vw';
+      p.style.top = (Math.random()*100)+'vh';
+      p.style.background = `radial-gradient(circle, #fff 0%, #ff4081 60%, #512da8 100%)`;
+      p.style.animationDelay = (Math.random()*10)+'s';
+      particles.appendChild(p);
+    }
+
+    // Animations d'apparition
+    ScrollReveal().reveal('.card, .dashboard-card', {
+      distance: '40px',
+      duration: 900,
+      easing: 'cubic-bezier(.25,1.7,.45,.87)',
+      origin: 'bottom',
+      interval: 120,
+      opacity: 0,
+      reset: false
+    });
+
+    // Chargement et affichage des outils
+    async function loadTools() {
+      const response = await fetch('fix-data.json');
+      const data = await response.json();
+      const container = document.getElementById('tools-container');
+      const search = document.getElementById('search');
+
+      function renderTools(filter = '') {
+        container.innerHTML = '';
+        data.tools
+          .filter(tool => tool.name && tool.name.toLowerCase().includes(filter.toLowerCase()))
+          .forEach(tool => {
+            const card = document.createElement('div');
+            card.className = 'card dashboard-card';
+            card.innerHTML = `
+              <i class="ph ph-wrench"></i>
+              <h3>${tool.name}</h3>
+              <p>${tool.description ? tool.description : ''}</p>
+              <a href="${tool.url}" target="_blank" rel="noopener">
+                <button>Télécharger</button>
+              </a>
+            `;
+            container.appendChild(card);
+          });
+      }
+
+      search.addEventListener('input', () => renderTools(search.value));
+      renderTools();
+    }
+
+    loadTools();
+  </script>
+</body>
+</html>

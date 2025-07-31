@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assistant IA | Windows Repair Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    :root {
+      --bg-main: #181c24;
+      --glass: rgba(24,28,36,0.7);
+      --accent: #00eaff;
+      --accent2: #ff4081;
+      --white: #fff;
+    }
+    body {
+      background: linear-gradient(135deg, #181c24 0%, #23263a 100%);
+      min-height: 100vh;
+      font-family: 'Poppins', Arial, sans-serif;
+      color: var(--white);
+      margin: 0;
+      padding: 0;
+    }
+    .particles {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.13;
+      filter: blur(2px);
+      animation: particleMove 14s linear infinite;
+      background: radial-gradient(circle, #fff 0%, var(--accent2) 60%, #512da8 100%);
+    }
+    @keyframes particleMove {
+      0% { transform: translateY(0) scale(1);}
+      100% { transform: translateY(-120vh) scale(1.2);}
+    }
+    .main-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 56px;
+      padding: 0 32px;
+      background: rgba(24,28,36,0.85);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 16px 0 #00eaff22;
+      border-bottom: 1.5px solid #23263a;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: var(--white);
+      font-size: 1.2em;
+      letter-spacing: 1px;
+    }
+    nav {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .nav-btn {
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 22px;
+      font-size: 1em;
+      font-weight: 600;
+      margin: 0 4px;
+      box-shadow: 0 2px 16px #00eaff44;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      outline: none;
+      transition: background 0.4s, transform 0.2s, box-shadow 0.3s;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      background: linear-gradient(270deg, var(--accent2) 0%, var(--accent) 100%);
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 4px 32px #00eaffaa;
+    }
+    .nav-btn:active {
+      filter: brightness(1.2);
+      box-shadow: 0 2px 8px #00eaff77;
+    }
+    .hero {
+      min-height: 30vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px 0 20px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 32px 0 #00eaff44;
+    }
+    .hero-content {
+      background: var(--glass);
+      backdrop-filter: var(--glass-blur);
+      border-radius: 22px;
+      padding: 32px 24px;
+      box-shadow: 0 8px 32px rgba(0,234,255,0.15);
+      border: 1.5px solid var(--accent);
+      max-width: 650px;
+      margin: auto;
+      animation: fadeInDown 1.2s cubic-bezier(.25,1.7,.45,.87) both;
+    }
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-60px) scale(0.95);}
+      100% { opacity: 1; transform: translateY(0) scale(1);}
+    }
+    .hero-content h1 {
+      font-size: 2.2em;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 24px #00eaffcc;
+    }
+    .hero-content p {
+      font-size: 1.1em;
+      color: #fff;
+      text-shadow: 0 2px 8px #00eaffaa;
+    }
+    .chat-container {
+      box-shadow: 0 0 32px 0 #00eaffaa, 0 0 0 8px #23263a22;
+      background: var(--glass);
+      border: 2px solid var(--accent);
+      position: relative;
+      max-width: 800px;
+      margin: 40px auto 0 auto;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      height: 70vh;
+      overflow: hidden;
+      backdrop-filter: var(--glass-blur);
+      z-index: 2;
+      animation: fadeInDown 1.2s cubic-bezier(.25,1.7,.45,.87) both;
+    }
+    .chat-container::before {
+      content: "";
+      position: absolute;
+      left: -40px;
+      top: -40px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, var(--accent2) 0%, #fff0 80%);
+      filter: blur(30px);
+      opacity: 0.3;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .chat-box {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .message {
+      max-width: 70%;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 15px;
+      line-height: 1.4;
+      animation: fadeIn 0.3s ease;
+      word-break: break-word;
+    }
+    .user {
+      align-self: flex-end;
+      background: linear-gradient(90deg, var(--accent2) 60%, #512da8 100%);
+      color: white;
+      position: relative;
+      box-shadow: 0 0 24px 0 var(--accent2), 0 0 0 8px #23263a22;
+    }
+    .bot {
+      align-self: flex-start;
+      background: linear-gradient(90deg, #512da8 60%, var(--accent2) 100%);
+      color: #fff;
+      position: relative;
+      box-shadow: 0 0 24px 0 #512da8aa, 0 0 0 8px var(--accent2);
+    }
+    .input-area {
+      display: flex;
+      border-top: 1px solid var(--accent2);
+      background: #181c24;
+    }
+    .input-area input {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      font-size: 16px;
+      outline: none;
+      background: #23263a;
+      color: #fff;
+      border-radius: 0 0 0 12px;
+    }
+    .input-area button {
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+      color: white;
+      border: none;
+      padding: 15px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+      border-radius: 0 0 12px 0;
+    }
+    .input-area button:hover {
+      background: linear-gradient(90deg, var(--accent2) 0%, var(--accent) 100%);
+    }
+    .suggestions {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .suggestion-btn {
+      background: var(--accent2);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 0.95em;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 16px #ff408144;
+    }
+    .suggestion-btn:hover {
+      background: #512da8;
+      color: #fff;
+      box-shadow: 0 4px 32px #00eaffaa;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    footer {
+      text-align: center;
+      padding: 24px 10px;
+      background: rgba(24,28,36,0.85);
+      border-top: 1px solid var(--accent2);
+      margin-top: 60px;
+      color: #fff;
+      font-size: 1em;
+      letter-spacing: 1px;
+      box-shadow: 0 -2px 24px #23263a44;
+      backdrop-filter: blur(8px);
+    }
+    /* Loader */
+    #loader {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(24,28,36,0.85);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+    }
+    #loader .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid var(--accent);
+      border-top: 6px solid var(--accent2);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    @media (max-width: 700px) {
+      .main-header { padding: 0 10px; height: 48px; }
+      .logo { font-size: 1em; }
+      nav { gap: 6px; }
+      .dashboard, .features { padding: 18px 4vw; }
+      .card, .chat-container { width: 98vw; max-width: 360px; }
+      .hero-content { padding: 24px 8px; }
+    }
+    .typing { font-style: italic; opacity: 0.7; letter-spacing: 2px; }
+  </style>
+</head>
+<body>
+  <div class="particles" aria-hidden="true"></div>
+  <header class="main-header">
+    <div class="logo">
+      <i class="ph ph-windows-logo"></i>
+      <span>Windows Repair</span>
+    </div>
+    <nav>
+      <button class="nav-btn" onclick="window.location.href='index.html'">Accueil</button>
+      <button class="nav-btn" onclick="window.location.href='scripts.html'">Scripts</button>
+      <button class="nav-btn" onclick="window.location.href='tools.html'">Outils</button>
+      <button class="nav-btn active" onclick="window.location.href='ai-assistant.html'">Assistant IA</button>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Bienvenue sur Windows Repair IA</h1>
+      <p>Votre assistant personnel pour résoudre tous vos problèmes Windows.</p>
+    </div>
+  </div>
+
+  <div class="chat-container">
+    <div class="chat-box" id="chat-box">
+      <div class="message bot">👋 Bonjour ! Je suis votre assistant IA Windows Repair 4.0.<br>
+        Décrivez votre problème ou choisissez une suggestion ci-dessous.</div>
+    </div>
+    <div class="suggestions" style="margin-bottom:10px;">
+      <button class="suggestion-btn" onclick="quickAsk('Comment réparer un écran bleu ?')">Réparer un écran bleu (BSOD)</button>
+      <button class="suggestion-btn" onclick="quickAsk('Comment réparer un écran noir au démarrage ?')">Réparer un écran noir au démarrage</button>
+      <button class="suggestion-btn" onclick="quickAsk('Windows ne démarre plus')">Windows ne démarre plus</button>
+      <button class="suggestion-btn" onclick="quickAsk('Problème de connexion réseau')">Problème de connexion réseau</button>
+      <button class="suggestion-btn" onclick="quickAsk('Erreur Windows Update')">Erreur Windows Update</button>
+    </div>
+    <div class="input-area">
+      <input type="text" id="user-input" placeholder="Ex: Erreur 0x80070005" onkeydown="if(event.key==='Enter'){sendMessage();}" autocomplete="off" />
+      <button onclick="sendMessage()">Envoyer</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Windows Repair Platform</p>
+  </footer>
+
+  <!-- Loader animé -->
+  <div id="loader"><div class="spinner"></div></div>
+
+  <script>
+    // Loader animé au changement de page
+    function showLoader() {
+      document.getElementById('loader').style.display = 'flex';
+    }
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', showLoader);
+    });
+
+    // Particules roses animées
+    const particles = document.querySelector('.particles');
+    for(let i=0;i<18;i++){
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.width = p.style.height = (Math.random()*32+24)+'px';
+      p.style.left = (Math.random()*100)+'vw';
+      p.style.top = (Math.random()*100)+'vh';
+      p.style.background = `radial-gradient(circle, #fff 0%, #ff4081 60%, #512da8 100%)`;
+      p.style.animationDelay = (Math.random()*10)+'s';
+      particles.appendChild(p);
+    }
+
+    // Animations d'apparition
+    ScrollReveal().reveal('.chat-container, .hero-content', {
+      distance: '40px',
+      duration: 900,
+      easing: 'cubic-bezier(.25,1.7,.45,.87)',
+      origin: 'bottom',
+      interval: 120,
+      opacity: 0,
+      reset: false
+    });
+
+    // --- IA Chat améliorée et bilingue ---
+    let data;
+    let dataLoaded = false;
+
+    async function loadData() {
+      appendMessage('<span class="typing">Chargement de la base de données...<br>Loading database...</span>', 'bot');
+      try {
+        const res = await fetch('fix-data.json');
+        data = await res.json();
+        dataLoaded = true;
+        // Retire le message de chargement si présent
+        const typing = document.querySelector('.typing');
+        if (typing) typing.parentNode.remove();
+      } catch (e) {
+        appendMessage("❌ Erreur de chargement de la base de données.<br>❌ Database loading error.", "bot");
+      }
+    }
+
+    function appendMessage(text, sender) {
+      // Correction : déclaration explicite de chatBox
+      const chatBox = document.getElementById('chat-box');
+      if (!chatBox) return; // Sécurité si l'élément n'existe pas
+      const div = document.createElement('div');
+      div.className = 'message ' + sender;
+      // Sécurise le message utilisateur
+      if (sender === 'user') {
+        div.textContent = text;
+      } else {
+        div.innerHTML = text;
+      }
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('user-input');
+      const message = input.value.trim();
+      if (!message) return;
+      appendMessage(message, 'user');
+      input.value = '';
+      appendMessage('<span class="typing">...</span>', 'bot');
+      setTimeout(() => {
+        const typing = document.querySelector('.typing');
+        if (typing) typing.parentNode.remove();
+        const response = findSolution(message);
+        appendMessage(response, 'bot');
+        input.focus();
+      }, 700);
+    }
+
+    function quickAsk(text) {
+      document.getElementById('user-input').value = text;
+      sendMessage();
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/&/g, "&amp;")
+                      .replace(/</g, "&lt;")
+                      .replace(/>/g, "&gt;")
+                      .replace(/"/g, "&quot;")
+                      .replace(/'/g, "&#039;");
+    }
+
+    function findSolution(query) {
+      if (!dataLoaded) return "⏳ Chargement de la base de données, veuillez réessayer dans un instant.<br>⏳ Loading database, please try again in a moment.";
+      query = query.toLowerCase();
+
+      // Écran bleu (BSOD)
+      if (
+        query.includes("écran bleu") ||
+        query.includes("blue screen") ||
+        query.includes("bsod")
+      ) {
+        return `
+          🟦 <strong>Diagnostic et réparation d'un écran bleu (BSOD)</strong><br>
+          <b>Étapes à suivre :</b><br>
+          1. Notez le code d'erreur affiché sur l'écran bleu (ex: 0x0000007E, DRIVER_IRQL_NOT_LESS_OR_EQUAL).<br>
+          2. Débranchez tous les périphériques USB non essentiels.<br>
+          3. Redémarrez votre PC et essayez le mode sans échec.<br>
+          4. Analysez les crashs avec <a href="tools.html" target="_blank"><button>BlueScreenView</button></a> pour identifier le pilote ou le module fautif.<br>
+          5. Mettez à jour tous vos pilotes (surtout graphiques, réseau, chipset) et Windows.<br>
+          6. Lancez une vérification des fichiers système avec le script suivant :<br>
+          <button onclick="navigator.clipboard.writeText('sfc /scannow')">Copier : sfc /scannow</button><br>
+          7. Si le problème persiste, utilisez <a href="tools.html" target="_blank"><button>WhoCrashed</button></a> pour une analyse avancée.<br>
+          8. Consultez la page <a href="tools.html">Outils</a> pour d'autres utilitaires.<br>
+          <b>Prévention :</b> Évitez d’installer des pilotes non officiels, gardez Windows à jour, et surveillez l’état de votre disque dur.<br>
+          <hr>
+          🟦 <strong>Blue screen (BSOD) troubleshooting</strong><br>
+          <b>How to proceed:</b><br>
+          1. Write down the error code shown on the blue screen (e.g. 0x0000007E, DRIVER_IRQL_NOT_LESS_OR_EQUAL).<br>
+          2. Unplug all unnecessary USB devices.<br>
+          3. Restart your PC and try Safe Mode.<br>
+          4. Use <a href="tools.html" target="_blank"><button>BlueScreenView</button></a> to analyze crash dumps and identify faulty drivers.<br>
+          5. Update all your drivers (especially graphics, network, chipset) and Windows.<br>
+          6. Run a system file check with this script:<br>
+          <button onclick="navigator.clipboard.writeText('sfc /scannow')">Copy: sfc /scannow</button><br>
+          7. If the issue persists, use <a href="tools.html" target="_blank"><button>WhoCrashed</button></a> for advanced analysis.<br>
+          8. See the <a href="tools.html">Tools</a> page for more solutions.<br>
+          <b>Prevention:</b> Avoid unofficial drivers, keep Windows updated, and monitor your hard drive health.
+        `;
+      }
+
+      // Windows Update
+      if (
+        query.includes("windows update") ||
+        query.includes("mise à jour") ||
+        query.includes("erreur windows update")
+      ) {
+        return `
+          🔄 <strong>Problèmes de Windows Update</strong><br>
+          <b>Étapes :</b><br>
+          1. Lancez l'utilitaire de résolution des problèmes Windows Update.<br>
+          2. Redémarrez votre PC.<br>
+          3. Utilisez l'outil <a href="tools.html" target="_blank"><button>Windows Update Troubleshooter</button></a>.<br>
+          4. Réinitialisez les composants Windows Update avec ce script :<br>
+          <button onclick="navigator.clipboard.writeText('net stop wuauserv && net stop bits && net stop cryptsvc && ren %systemroot%\\SoftwareDistribution SoftwareDistribution.old && ren %systemroot%\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits && net start cryptsvc')">Copier : Réinitialiser Windows Update</button><br>
+          5. Consultez la page <a href="tools.html">Outils</a> pour d'autres utilitaires.<br>
+          <b>Prévention :</b> Gardez votre système à jour et évitez d’interrompre les mises à jour.<br>
+          <hr>
+          🔄 <strong>Windows Update issues</strong><br>
+          <b>How to proceed:</b><br>
+          1. Run the Windows Update troubleshooter.<br>
+          2. Restart your PC.<br>
+          3. Use <a href="tools.html" target="_blank"><button>Windows Update Troubleshooter</button></a>.<br>
+          4. Reset Windows Update components with this script:<br>
+          <button onclick="navigator.clipboard.writeText('net stop wuauserv && net stop bits && net stop cryptsvc && ren %systemroot%\\SoftwareDistribution SoftwareDistribution.old && ren %systemroot%\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits && net start cryptsvc')">Copy: Reset Windows Update</button><br>
+          5. See the <a href="tools.html">Tools</a> page for more utilities.<br>
+          <b>Prevention:</b> Keep your system up to date and avoid interrupting updates.
+        `;
+      }
+
+      // Connexion réseau
+      if (
+        query.includes("connexion réseau") ||
+        query.includes("network") ||
+        query.includes("internet") ||
+        query.includes("problème de connexion réseau")
+      ) {
+        return `
+          🌐 <strong>Problèmes de connexion réseau</strong><br>
+          <b>Étapes :</b><br>
+          1. Vérifiez vos câbles et redémarrez votre box.<br>
+          2. Lancez l'utilitaire de résolution réseau.<br>
+          3. Utilisez l'outil <a href="tools.html" target="_blank"><button>Network Reset</button></a>.<br>
+          4. Réinitialisez la pile TCP/IP avec ce script :<br>
+          <button onclick="navigator.clipboard.writeText('netsh int ip reset && netsh winsock reset')">Copier : Réinitialiser TCP/IP</button><br>
+          5. Consultez la page <a href="tools.html">Outils</a> pour d'autres solutions.<br>
+          <b>Prévention :</b> Gardez vos pilotes réseau à jour.<br>
+          <hr>
+          🌐 <strong>Network connection issues</strong><br>
+          <b>How to proceed:</b><br>
+          1. Check your cables and restart your router.<br>
+          2. Run the network troubleshooter.<br>
+          3. Use <a href="tools.html" target="_blank"><button>Network Reset</button></a>.<br>
+          4. Reset TCP/IP stack with this script:<br>
+          <button onclick="navigator.clipboard.writeText('netsh int ip reset && netsh winsock reset')">Copy: Reset TCP/IP</button><br>
+          5. See the <a href="tools.html">Tools</a> page for more solutions.<br>
+          <b>Prevention:</b> Keep your network drivers up to date.
+        `;
+      }
+
+      // Menu Démarrer bloqué
+      if (
+        query.includes("menu démarrer") ||
+        query.includes("start menu") ||
+        query.includes("bloqué")
+      ) {
+        return `
+          🟩 <strong>Menu Démarrer bloqué ou ne répond plus</strong><br>
+          1. Redémarrez l’explorateur Windows via le Gestionnaire des tâches (Ctrl+Shift+Esc).<br>
+          2. Exécutez le script de réparation du menu Démarrer dans la page <a href="scripts.html">Scripts</a>.<br>
+          3. Mettez à jour Windows et vos pilotes.<br>
+          4. Consultez la page <a href="tools.html">Outils</a> pour d'autres utilitaires.<br>
+          <hr>
+          🟩 <strong>Start Menu frozen or not responding</strong><br>
+          1. Restart Windows Explorer from Task Manager (Ctrl+Shift+Esc).<br>
+          2. Run the Start Menu repair script from the <a href="scripts.html">Scripts</a> page.<br>
+          3. Update Windows and your drivers.<br>
+          4. See the <a href="tools.html">Tools</a> page for more utilities.
+        `;
+      }
+
+      // Impossible d'installer une application
+      if (
+        query.includes("installer une application") ||
+        query.includes("install app") ||
+        query.includes("impossible d'installer")
+      ) {
+        return `
+          🛠️ <strong>Impossible d’installer une application</strong><br>
+          1. Vérifiez l’espace disque disponible.<br>
+          2. Exécutez le script de réparation du Windows Store dans la page <a href="scripts.html">Scripts</a>.<br>
+          3. Redémarrez votre PC.<br>
+          4. Consultez la page <a href="tools.html">Outils</a> pour d'autres utilitaires.<br>
+          <hr>
+          🛠️ <strong>Can't install an app</strong><br>
+          1. Check available disk space.<br>
+          2. Run the Windows Store repair script from the <a href="scripts.html">Scripts</a> page.<br>
+          3. Restart your PC.<br>
+          4. See the <a href="tools.html">Tools</a> page for more utilities.
+        `;
+      }
+
+      // Windows lent
+      if (
+        query.includes("lent") ||
+        query.includes("slow") ||
+        query.includes("ralenti")
+      ) {
+        return `
+          🐢 <strong>Windows est lent</strong><br>
+          <b>Conseils :</b><br>
+          1. Désactivez les programmes inutiles au démarrage (Ctrl+Shift+Esc &gt; Démarrage).<br>
+          2. Nettoyez votre disque avec <a href="tools.html" target="_blank"><button>CCleaner</button></a> ou l’outil de nettoyage Windows.<br>
+          3. Analysez votre PC avec un antivirus.<br>
+          4. Mettez à jour vos pilotes et Windows.<br>
+          5. Exécutez ce script pour nettoyer les fichiers temporaires :<br>
+          <button onclick="navigator.clipboard.writeText('del /q/f/s %TEMP%\\*')">Copier : Nettoyer les fichiers temporaires</button><br>
+          6. Consultez la page <a href="tools.html">Outils</a> pour d'autres utilitaires.<br>
+          <hr>
+          🐢 <strong>Windows is slow</strong><br>
+          <b>Tips:</b><br>
+          1. Disable unnecessary startup programs (Ctrl+Shift+Esc &gt; Startup).<br>
+          2. Clean your disk with <a href="tools.html" target="_blank"><button>CCleaner</button></a> or Windows Disk Cleanup.<br>
+          3. Scan your PC with antivirus.<br>
+          4. Update your drivers and Windows.<br>
+          5. Run this script to clean temporary files:<br>
+          <button onclick="navigator.clipboard.writeText('del /q/f/s %TEMP%\\*')">Copy: Clean temp files</button><br>
+          6. See the <a href="tools.html">Tools</a> page for more utilities.
+        `;
+      }
+
+      // Démarrage/Boot
+      if (
+        query.includes("démarrage") ||
+        query.includes("boot") ||
+        query.includes("ne démarre pas") ||
+        query.includes("startup")
+      ) {
+        return `
+          🚀 <strong>Windows ne démarre pas</strong><br>
+          <b>Procédure :</b><br>
+          1. Essayez le mode sans échec (F8 ou Shift+Redémarrer).<br>
+          2. Lancez une réparation automatique via les options avancées.<br>
+          3. Utilisez l'outil <a href="tools.html" target="_blank"><button>Windows Repair</button></a> pour corriger les fichiers système.<br>
+          4. Exécutez ce script pour réparer le démarrage :<br>
+          <button onclick="navigator.clipboard.writeText('bootrec /fixmbr && bootrec /fixboot && bootrec /scanos && bootrec /rebuildbcd')">Copier : Réparer le démarrage</button><br>
+          5. Consultez la page <a href="tools.html">Outils</a> pour d'autres utilitaires.<br>
+          <b>Prévention :</b> Évitez les arrêts brutaux et gardez vos pilotes à jour.<br>
+          <hr>
+          🚀 <strong>Windows won't start</strong><br>
+          <b>How to proceed:</b><br>
+          1. Try Safe Mode (F8 or Shift+Restart).<br>
+          2. Run Automatic Repair from Advanced Options.<br>
+          3. Use <a href="tools.html" target="_blank"><button>Windows Repair</button></a> to fix system files.<br>
+          4. Run this script to repair boot:<br>
+          <button onclick="navigator.clipboard.writeText('bootrec /fixmbr && bootrec /fixboot && bootrec /scanos && bootrec /rebuildbcd')">Copy: Repair boot</button><br>
+          5. See the <a href="tools.html">Tools</a> page for more utilities.<br>
+          <b>Prevention:</b> Avoid forced shutdowns and keep your drivers up to date.
+        `;
+      }
+
+      // Si aucune solution exacte n'est trouvée
+      return `❓ Je ne trouve pas de solution exacte à votre problème.<br>
+      Veuillez préciser votre erreur ou consultez la page <a href="tools.html">Outils</a> pour accéder à tous les utilitaires disponibles.<hr>
+      ❓ I can't find an exact solution for your issue.<br>
+      Please provide more details or visit the <a href="tools.html">Tools</a> page to access all available utilities.`;
+    }
+
+    function suggestTopics(query) {
+      // Suggestions basées sur la base de données, sans doublons ni suggestions déjà présentes dans la requête
+      const topics = new Set();
+      if (data && data.scripts) {
+        data.scripts.forEach(s => {
+          if (s.name && !query.includes(s.name.toLowerCase()) && topics.size < 4) {
+            topics.add(s.name);
+          }
+        });
+      }
+      if (topics.size < 4 && data && data.tools) {
+        data.tools.forEach(t => {
+          if (t.name && !query.includes(t.name.toLowerCase()) && topics.size < 4) {
+            topics.add(t.name);
+          }
+        });
+      }
+      return Array.from(topics).slice(0, 4);
+    }
+
+    loadData();
+  </script>
+</body>
+</html>
