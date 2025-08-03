@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - Windows Repair Platform</title>
+  <meta name="description" content="Articles croustillants, astuces et actualités sur la réparation Windows et l'univers PC.">
+  <meta name="keywords" content="blog Windows, réparation, astuces, dépannage, communauté, Windows 10, Windows 11">
+  <meta name="author" content="Wilson Pascal">
+  <link rel="canonical" href="https://ton-domaine.com/blog.html">
+  <meta property="og:title" content="Blog - Windows Repair Platform">
+  <meta property="og:description" content="Articles croustillants, astuces et actualités sur la réparation Windows et l'univers PC.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ton-domaine.com/blog.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/scrollreveal" defer></script>
+  <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #181c24 0%, #23263a 100%);
+      font-family: 'Poppins', Arial, sans-serif;
+      color: #eaf6fb;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .main-header, .logo, nav, .cta-btn, .features, .features-grid, .card, .comments-section, .contact, footer {
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+    .blog-banner {
+      width: 100%;
+      max-height: 180px; /* réduit la hauteur pour éviter l'espace vide */
+      object-fit: cover;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 4px 32px #00eaff33;
+      margin-bottom: 0;
+      display: block;
+    }
+    .hero-content {
+      margin-top: 0; /* supprime la marge négative */
+      text-align: center;
+      padding: 0 12px;
+    }
+    .hero-content h1 {
+      font-size: 2.3em;
+      font-weight: 700;
+      color: #00eaff;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 12px #00eaff44;
+    }
+    .hero-content p {
+      font-size: 1.15em;
+      color: #fff;
+      margin-bottom: 18px;
+      font-weight: 400;
+    }
+    .features h2 {
+      color: #ff4081;
+      font-size: 1.7em;
+      font-weight: 700;
+      margin-bottom: 18px;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .features-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      justify-content: center;
+    }
+    .card {
+      background: rgba(24,28,36,0.85);
+      border-radius: 18px;
+      box-shadow: 0 2px 24px #00eaff22;
+      padding: 22px 18px;
+      max-width: 420px;
+      min-width: 260px;
+      color: #fff;
+      transition: transform .15s, box-shadow .15s;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+    .card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 8px 32px #ff408177;
+    }
+    .card h3 {
+      color: #00eaff;
+      font-size: 1.35em;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .card p {
+      color: #eaf6fb;
+      font-size: 1.08em;
+      margin-bottom: 10px;
+    }
+    .card img {
+      margin-bottom: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px #00eaff44;
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .cta-btn {
+      background: linear-gradient(90deg,#00eaff,#ff4081);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 22px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1em;
+      box-shadow: 0 2px 8px #00eaff77;
+      transition: box-shadow .2s, background .2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .cta-btn:hover {
+      box-shadow: 0 4px 16px #ff408177;
+      background: linear-gradient(90deg,#ff4081,#00eaff);
+    }
+    .comments-section {
+      background: var(--glass,rgba(24,28,36,0.85));
+      border-radius: 18px;
+      max-width: 600px;
+      margin: 40px auto 0 auto;
+      padding: 28px 22px;
+      box-shadow: 0 2px 24px #00eaff22;
+    }
+    .comments-title {
+      color: #ff4081;
+      font-size: 1.3em;
+      margin-bottom: 18px;
+      font-weight: 700;
+      text-align: left;
+      letter-spacing: 0.5px;
+    }
+    .comment-list {
+      margin-bottom: 18px;
+      max-height: 260px;
+      overflow-y: auto;
+    }
+    .comment {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+      background: rgba(24,28,36,0.7);
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+    .comment.admin-comment {
+      border: 2px solid #ff4081;
+      background: rgba(255,64,129,0.08);
+    }
+    .comment-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #23263a;
+      object-fit: cover;
+      box-shadow: 0 2px 8px #00eaff77;
+    }
+    .comment-content {
+      flex: 1;
+    }
+    .comment-author {
+      font-weight: 700;
+      color: #00eaff;
+      font-size: 1em;
+      margin-bottom: 2px;
+      letter-spacing: 0.5px;
+    }
+    .comment-text {
+      font-size: 1em;
+      color: #fff;
+      margin-bottom: 2px;
+      font-weight: 400;
+    }
+    .comment-date {
+      font-size: 0.85em;
+      color: #aaa;
+    }
+    .comment-form {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .comment-form input, .comment-form textarea {
+      border-radius: 8px;
+      border: none;
+      padding: 10px;
+      font-size: 1em;
+      background: #23263a;
+      color: #fff;
+      outline: none;
+      width: 100%;
+      resize: none;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+    .comment-form input {
+      max-width: 140px;
+    }
+    .comment-form button {
+      background: linear-gradient(90deg,#00eaff,#ff4081);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: box-shadow .2s;
+      box-shadow: 0 2px 8px #00eaff77;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+    .comment-form button:hover {
+      box-shadow: 0 4px 16px #ff408177;
+      background: linear-gradient(90deg,#ff4081,#00eaff);
+    }
+    .contact h2 {
+      color: #00eaff;
+      font-size: 1.2em;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+    .contact p, footer p {
+      color: #eaf6fb;
+      font-size: 1em;
+      font-weight: 400;
+    }
+    footer {
+      background: rgba(24,28,36,0.85);
+      padding: 18px 0;
+      text-align: center;
+      border-radius: 0 0 18px 18px;
+      margin-top: 40px;
+      box-shadow: 0 -2px 24px #00eaff22;
+    }
+    @media (max-width:900px){
+      .features-grid{flex-direction:column;align-items:center;}
+      .card{max-width:95vw;}
+      .blog-banner{max-height:180px;}
+    }
+    @media (max-width:600px){
+      .comments-section{padding:16px 6px;}
+      .comment-form input{max-width:90px;}
+      .hero-content h1{font-size:1.3em;}
+      .features h2{font-size:1.1em;}
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" aria-hidden="true"></div>
+  <header class="main-header">
+    <div class="logo">
+      <img src="logo-accueil.webp" alt="Logo Windows Repair Accueil" style="height:38px;width:auto;border-radius:8px;box-shadow:0 2px 8px #00eaff77;margin-right:10px;">
+      <span>Windows Repair Platform</span>
+    </div>
+    <nav>
+      <button class="nav-btn" onclick="window.location.href='index.html'">Accueil</button>
+      <button class="nav-btn" onclick="window.location.href='scripts.html'">Scripts</button>
+      <button class="nav-btn" onclick="window.location.href='tools.html'">Outils</button>
+      <button class="nav-btn" onclick="window.location.href='ai-assistant.html'">Assistant IA</button>
+      <button class="nav-btn" onclick="window.location.href='blog.html'">Blog</button>
+    </nav>
+  </header>
+  <!-- Image d'entrée du blog, plus compacte -->
+  <img src="https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?auto=format&fit=crop&w=1200&q=80" alt="Réparation PC Windows" class="blog-banner" style="max-height:220px;">
+  <main>
+    <section class="hero-content" style="margin-top:0;">
+      <h1>Réparez votre PC Windows grâce à notre plateforme</h1>
+      <p>
+        Découvrez des articles, des astuces et des outils pour réparer votre ordinateur facilement, rapidement et en toute sécurité.
+      </p>
+      <div style="margin:18px 0;">
+        <a href="scripts.html" class="cta-btn" style="margin-right:10px;">Scripts automatiques</a>
+        <a href="tools.html" class="cta-btn" style="margin-right:10px;">Outils certifiés</a>
+        <a href="ai-assistant.html" class="cta-btn">Assistant IA</a>
+      </div>
+    </section>
+    <section class="features">
+      <h2>Articles récents</h2>
+      <div class="features-grid">
+        <div class="card">
+          <img src="Windows-11-Ecran-bleu-de-la-mort.jpeg" alt="Réparation écran bleu Windows">
+          <h3>Écran bleu : comment le réparer avec nos scripts</h3>
+          <p>Suivez notre guide pour corriger les BSOD grâce à nos outils et scripts automatiques.</p>
+          <ul>
+            <li>Analyse des erreurs avec l’Assistant IA</li>
+            <li>Application des scripts de réparation</li>
+            <li>Conseils pour éviter les futurs plantages</li>
+          </ul>
+          <a href="scripts.html" class="cta-btn">Voir les scripts</a>
+        </div>
+        <div class="card">
+          <img src="ecran noir.webp" alt="Réparation démarrage Windows">
+          <h3>Windows ne démarre plus ? Solution étape par étape</h3>
+          <p>Retrouvez toutes les méthodes pour débloquer un PC qui ne démarre plus, sans perdre vos fichiers.</p>
+          <ul>
+            <li>Restauration système</li>
+            <li>Réparation du démarrage</li>
+            <li>Utilisation d’un support USB</li>
+          </ul>
+          <a href="tools.html" class="cta-btn">Découvrir les outils</a>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1527430253228-74a5c9fda8c7?auto=format&fit=crop&w=400&q=80" alt="Outils gratuits Windows">
+          <h3>Les meilleurs outils gratuits pour réparer Windows</h3>
+          <p>Notre sélection d’utilitaires pour analyser, nettoyer et optimiser votre PC.</p>
+          <ul>
+            <li>CrystalDiskInfo</li>
+            <li>Malwarebytes</li>
+            <li>CCleaner</li>
+          </ul>
+          <a href="tools.html" class="cta-btn">Voir la liste</a>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Optimisation Windows">
+          <h3>Optimiser Windows sans risque</h3>
+          <p>Nos conseils pour accélérer Windows et garder un système sain.</p>
+          <ul>
+            <li>Désactiver les programmes inutiles</li>
+            <li>Nettoyer le démarrage</li>
+            <li>Utiliser les outils officiels</li>
+          </ul>
+          <a href="ai-assistant.html" class="cta-btn">Demander à l’IA</a>
+        </div>
+      </div>
+    </section>
+    <section class="comments-section">
+      <div class="comments-title">Commentaires & Communauté</div>
+      <div class="comment-list" id="comment-list"></div>
+      <form class="comment-form" id="comment-form" autocomplete="off">
+        <input type="text" id="author" placeholder="Votre nom" required>
+        <textarea id="text" rows="1" placeholder="Votre commentaire..." required></textarea>
+        <button type="submit">Envoyer</button>
+      </form>
+      <div style="margin-top:10px;font-size:0.95em;color:#aaa;">
+        <span>Vous pouvez aussi communiquer avec l'équipe via ce blog.</span>
+        <br><span style="color:#ff4081;">Admin : Wilson Pascal</span>
+      </div>
+    </section>
+    <section class="contact" style="
+      padding: 48px 0 36px 0;
+      text-align: center;
+      max-width: 480px;
+      margin: 40px auto 0 auto;
+      background: rgba(24,28,36,0.7);
+      border-radius: 18px;
+      box-shadow: 0 2px 24px #00eaff22;
+      backdrop-filter: blur(8px);
+      border: 1.5px solid #00eaff;
+    ">
+      <i class="ph ph-envelope-simple" style="font-size:2.6em;color:#00eaff;margin-bottom:12px;"></i>
+      <h2 style="color:#00eaff;margin-bottom:16px;">Contactez l’équipe</h2>
+      <p style="font-size:1.13em;margin-bottom:22px;color:#eaf6fb;">
+        Une question, une astuce ou un témoignage à partager ?<br>
+        <b>Nous sommes là pour vous aider et publier vos conseils !</b>
+      </p>
+      <a href="mailto:wilsonpascal708@gmail.com" class="cta-btn" style="margin-bottom:10px;">Envoyer un email</a>
+      <br>
+      <a href="ai-assistant.html" class="cta-btn" style="background:linear-gradient(90deg,#ff4081,#00eaff);margin-top:8px;">Utiliser l’Assistant IA</a>
+    </section>
+  </main>
+  <footer>
+    <p>© 2025 Windows Repair Platform | Blog communautaire</p>
+  </footer>
+  <script>
+    // Particules roses animées
+    const particles = document.querySelector('.particles');
+    for(let i=0;i<18;i++){
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.width = p.style.height = (Math.random()*32+24)+'px';
+      p.style.left = (Math.random()*100)+'vw';
+      p.style.top = (Math.random()*100)+'vh';
+      p.style.background = `radial-gradient(circle, #fff 0%, #ff4081 60%, #512da8 100%)`;
+      p.style.animationDelay = (Math.random()*10)+'s';
+      particles.appendChild(p);
+    }
+    // Animations d'apparition
+    ScrollReveal().reveal('.card, .hero-content', {
+      distance: '40px',
+      duration: 900,
+      easing: 'cubic-bezier(.25,1.7,.45,.87)',
+      origin: 'bottom',
+      interval: 120,
+      opacity: 0,
+      reset: false
+    });
+
+    // Commentaires dynamiques
+    const commentList = document.getElementById('comment-list');
+    const commentForm = document.getElementById('comment-form');
+    let comments = [
+      {
+        author: "Wilson Pascal (Admin)",
+        text: "Bienvenue sur le blog ! Posez vos questions ou partagez vos astuces ici.",
+        date: new Date().toLocaleString(),
+        avatar: "logo-ia.webp"
+      }
+    ];
+
+    function renderComments() {
+      commentList.innerHTML = "";
+      comments.forEach(c => {
+        commentList.innerHTML += `
+          <div class="comment${c.author.includes('Admin') ? ' admin-comment' : ''}">
+            <img src="${c.avatar}" class="comment-avatar" alt="Avatar">
+            <div class="comment-content">
+              <div class="comment-author">${c.author}</div>
+              <div class="comment-text">${c.text}</div>
+              <div class="comment-date">${c.date}</div>
+            </div>
+          </div>
+        `;
+      });
+      commentList.scrollTop = commentList.scrollHeight;
+    }
+
+    commentForm.onsubmit = function(e){
+      e.preventDefault(); // Empêche le rechargement de la page
+      const author = document.getElementById('author').value.trim() || "Anonyme";
+      const text = document.getElementById('text').value.trim();
+      if(!text) return;
+      comments.push({
+        author,
+        text,
+        date: new Date().toLocaleString(),
+        avatar: "logo-ia.webp"
+      });
+      renderComments();
+      commentForm.reset();
+    };
+
+    renderComments();
+  </script>
+</body>
+</html>

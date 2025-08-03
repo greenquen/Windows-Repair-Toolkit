@@ -14,10 +14,12 @@
   <meta property="og:image" content="https://ton-domaine.com/logo.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ton-domaine.com/index.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="https://unpkg.com/scrollreveal"></script>
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://unpkg.com/scrollreveal" defer></script>
+  <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
   <style>
     :root {
       --bg-main: #181c24;
@@ -127,6 +129,11 @@
       max-width: 650px;
       margin: auto;
       animation: fadeInDown 1.2s cubic-bezier(.25,1.7,.45,.87) both;
+      display:flex;
+      align-items:center;
+      gap:32px;
+      flex-wrap:wrap;
+      justify-content:center;
     }
     @keyframes fadeInDown {
       0% { opacity: 0; transform: translateY(-60px) scale(0.95);}
@@ -281,78 +288,120 @@
 <body>
   <div class="particles" aria-hidden="true"></div>
   <header class="main-header">
-    <div class="logo"> 
-  
-      <img src="logo.png" alt="Logo Windows Repair" style="height:38px;width:auto;border-radius:8px;box-shadow:0 2px 8px #00eaff77;margin-right:10px;">
+    <div class="logo">
+      <img src="logo.png" alt="Logo Windows Repair" style="height:38px;width:38px;border-radius:8px;box-shadow:0 2px 8px #00eaff77;margin-right:10px;">
       <span>Windows Repair Platform</span>
     </div>
     <nav>
-      <button class="nav-btn active" onclick="window.location.href='index.html'">Accueil</button>
+      <button class="nav-btn" onclick="window.location.href='index.html'">Accueil</button>
       <button class="nav-btn" onclick="window.location.href='scripts.html'">Scripts</button>
       <button class="nav-btn" onclick="window.location.href='tools.html'">Outils</button>
       <button class="nav-btn" onclick="window.location.href='ai-assistant.html'">Assistant IA</button>
+      <button class="nav-btn" onclick="window.location.href='blog.html'">Blog</button>
     </nav>
   </header>
 
-  <div class="hero-content">
-    <h1>Réparez Windows <span style="color:#ff4081;">simplement</span> et <span style="color:#00eaff;">sûrement</span></h1>
-    <p>Votre PC plante ? Écran bleu, écran noir, démarrage impossible ?<br>
-    <b>Notre équipe d’experts</b> a conçu la plateforme la plus rapide et fiable pour remettre Windows sur pied.<br>
-    <span style="color:#ff4081;font-weight:600;">Scripts automatiques</span>, <span style="color:#00eaff;font-weight:600;">outils certifiés</span> et <span style="color:#fff;font-weight:600;">support humain</span> : tout est là pour vous aider.</p>
-    <a href="scripts.html" class="cta-btn">Commencer la réparation</a>
-  </div>
+  <main>
+    <!-- Présentation accrocheuse -->
+    <section class="intro-problemes" style="display:flex;gap:36px;align-items:center;justify-content:center;padding:32px 0 0 0;flex-wrap:wrap;">
+      <div style="max-width:340px;text-align:center;">
+        <img src="ecran bleu.jpg" alt="PC écran bleu" style="width:100%;max-width:320px;border-radius:18px;box-shadow:0 2px 16px #00eaff77;margin-bottom:18px;">
+        <h2 style="color:#ff4081;font-size:1.35em;margin-bottom:10px;">Fatigué des écrans bleus ?</h2>
+        <p style="color:#eaf6fb;font-size:1.08em;">Votre ordinateur affiche encore ce fameux écran bleu ? Ne perdez plus de temps à chercher des solutions qui ne marchent pas.</p>
+      </div>
+      <div style="max-width:340px;text-align:center;">
+        <img src="image-plage-bsod.webp" alt="PC qui bug" style="width:100%;max-width:320px;border-radius:18px;box-shadow:0 2px 16px #ff408177;margin-bottom:18px;">
+        <h2 style="color:#00eaff;font-size:1.35em;margin-bottom:10px;">Fatigué d’un PC qui bug tout le temps ?</h2>
+        <p style="color:#eaf6fb;font-size:1.08em;">Lenteurs, blocages, plantages : vous méritez un PC qui fonctionne enfin correctement, sans prise de tête.</p>
+      </div>
+      <div style="max-width:340px;text-align:center;">
+        <img src="image-homme-fatigue-pc.jpg" alt="Solutions qui ne marchent pas" style="width:100%;max-width:320px;border-radius:18px;box-shadow:0 2px 16px #00eaff77;margin-bottom:18px;">
+        <h2 style="color:#ff4081;font-size:1.35em;margin-bottom:10px;">Fatigué des solutions qui ne marchent pas ?</h2>
+        <p style="color:#eaf6fb;font-size:1.08em;">Arrêtez de perdre du temps avec des astuces inefficaces. Découvrez enfin la plateforme qui répare vraiment Windows.</p>
+      </div>
+    </section>
 
-  <section class="features">
-    <h2>Pourquoi choisir Windows Repair Platform&nbsp;?</h2>
-    <div class="features-grid">
-      <div class="card">
-        <i class="ph ph-lightning"></i>
-        <h3>Rapide</h3>
-        <p>Des solutions immédiates aux erreurs Windows les plus fréquentes. Gagnez du temps avec des scripts automatisés.</p>
-      </div>
-      <div class="card">
-        <i class="ph ph-shield-check"></i>
-        <h3>Fiable</h3>
-        <p>Scripts et outils officiels testés par des experts. Sécurité et efficacité garanties pour chaque réparation.</p>
-      </div>
-      <div class="card">
-        <i class="ph ph-brain"></i>
-        <h3>Intelligent</h3>
-        <p>Un assistant IA pour diagnostiquer, guider et résoudre vos problèmes Windows, même les plus complexes.</p>
+    <!-- Présentation de base existante -->
+    <div class="hero-content" style="display:flex;align-items:center;gap:32px;flex-wrap:wrap;justify-content:center;">
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=320&q=80" alt="Réparation Windows crédible" style="height:90px;width:90px;border-radius:18px;box-shadow:0 2px 16px #00eaff77;">
+      <div>
+        <h1>Réparez Windows <span style="color:#ff4081;">simplement</span> et <span style="color:#00eaff;">sûrement</span></h1>
+        <p>Votre PC plante ? Écran bleu, écran noir, démarrage impossible ?<br>
+        <b>Notre équipe d’experts</b> a conçu la plateforme la plus rapide et fiable pour remettre Windows sur pied.<br>
+        <span style="color:#ff4081;font-weight:600;">Scripts automatiques</span>, <span style="color:#00eaff;font-weight:600;">outils certifiés</span> et <span style="color:#fff;font-weight:600;">support humain</span> : tout est là pour vous aider.</p>
+        <a href="scripts.html" class="cta-btn">Commencer la réparation</a>
       </div>
     </div>
-  </section>
 
-  <!-- Section équipe -->
-  <section class="team" style="padding:50px 0 30px 0;text-align:center;">
-    <h2 style="color:#ff4081;">Notre équipe d’experts</h2>
-    <div style="display:flex;justify-content:center;gap:40px;flex-wrap:wrap;">
-      <div style="background:rgba(24,28,36,0.7);border-radius:16px;padding:24px 18px;max-width:220px;">
-        <img src="expeert.png" alt="Expert Windows" style="width:90px;height:90px;border-radius:50%;box-shadow:0 2px 16px #00eaff77;">
-        <h4 style="margin:14px 0 6px 0;color:#00eaff;">Alexandre L.</h4>
-        <p style="font-size:0.98em;">Ingénieur systèmes<br>15 ans d’expérience</p>
+    <section class="features">
+      <h2>Pourquoi choisir Windows Repair Platform&nbsp;?</h2>
+      <div class="features-grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?auto=format&fit=crop&w=400&q=80" alt="Technicien réparant un PC" style="width:100%;border-radius:10px;box-shadow:0 2px 12px #00eaff44;">
+          <i class="ph ph-lightning"></i>
+          <h3>Rapide</h3>
+          <p>Des solutions immédiates aux erreurs Windows les plus fréquentes. Gagnez du temps avec des scripts automatisés.</p>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80" alt="Sécurité informatique Windows" style="width:100%;border-radius:10px;box-shadow:0 2px 12px #ff408144;">
+          <i class="ph ph-shield-check"></i>
+          <h3>Fiable</h3>
+          <p>Scripts et outils officiels testés par des experts. Sécurité et efficacité garanties pour chaque réparation.</p>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Intelligence artificielle Windows" style="width:100%;border-radius:10px;box-shadow:0 2px 12px #00eaff44;">
+          <i class="ph ph-brain"></i>
+          <h3>Intelligent</h3>
+          <p>Un assistant IA pour diagnostiquer, guider et résoudre vos problèmes Windows, même les plus complexes.</p>
+        </div>
       </div>
-      <div style="background:rgba(24,28,36,0.7);border-radius:16px;padding:24px 18px;max-width:220px;">
-        <img src="expert1.png" alt="Expert Windows" style="width:90px;height:90px;border-radius:50%;box-shadow:0 2px 16px #ff408177;">
-        <h4 style="margin:14px 0 6px 0;color:#ff4081;">Sophie M.</h4>
-        <p style="font-size:0.98em;">Support technique<br>Spécialiste Windows 10/11</p>
-      </div>
-      <div style="background:rgba(24,28,36,0.7);border-radius:16px;padding:24px 18px;max-width:220px;">
-        <img src="expert3.png" alt="Expert Windows" style="width:90px;height:90px;border-radius:50%;box-shadow:0 2px 16px #00eaff77;">
-        <h4 style="margin:14px 0 6px 0;color:#00eaff;">Mehdi R.</h4>
-        <p style="font-size:0.98em;">Développeur scripts<br>Automatisation & sécurité</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Section contact -->
-  <section class="contact" style="padding:40px 0 30px 0;text-align:center;">
-    <h2 style="color:#00eaff;">Contactez-nous</h2>
-    <p style="font-size:1.1em;">Un problème persistant ? Besoin d’aide personnalisée ?<br>
-      Envoyez-nous un message à <a href="mailto:wilsonpascal708@gmail.com" style="color:#ff4081;font-weight:600;">wilsonpascal708@gmail.com</a><br>
-      ou décrivez votre souci via l’<a href="ai-assistant.html" style="color:#00eaff;">Assistant IA</a>.
-    </p>
-  </section>
+    <!-- Section équipe -->
+    <section class="team" style="padding:50px 0 30px 0;text-align:center;">
+      <h2 style="color:#ff4081;">Notre équipe d’experts</h2>
+      <div style="display:flex;justify-content:center;gap:40px;flex-wrap:wrap;">
+        <div style="background:rgba(24,28,36,0.7);border-radius:16px;padding:24px 18px;max-width:220px;">
+          <img src="expert2.png" alt="Expert Windows" style="width:90px;height:90px;border-radius:50%;box-shadow:0 2px 16px #00eaff77;">
+          <h4 style="margin:14px 0 6px 0;color:#00eaff;">Alexandre L.</h4>
+          <p style="font-size:0.98em;">Ingénieur systèmes<br>15 ans d’expérience</p>
+        </div>
+        <div style="background:rgba(24,28,36,0.7);border-radius:16px;padding:24px 18px;max-width:220px;">
+          <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Technicien Windows" style="width:90px;height:90px;border-radius:50%;box-shadow:0 4px 24px #00eaffcc;border:3px solid #fff;">
+          <h4 style="margin:14px 0 6px 0;color:#ff4081;">Sophie M.</h4>
+          <p style="font-size:0.98em;">Support technique<br>Spécialiste Windows 10/11</p>
+        </div>
+        <div style="background:rgba(24,28,36,0.7);border-radius:16px;padding:24px 18px;max-width:220px;">
+          <img src="expert3.png" alt="Expert Windows" style="width:90px;height:90px;border-radius:50%;box-shadow:0 2px 16px #00eaff77;">
+          <h4 style="margin:14px 0 6px 0;color:#00eaff;">Mehdi R.</h4>
+          <p style="font-size:0.98em;">Développeur scripts<br>Automatisation & sécurité</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section contact -->
+    <section class="contact" style="
+      padding: 48px 0 36px 0;
+      text-align: center;
+      max-width: 480px;
+      margin: 40px auto 0 auto;
+      background: rgba(24,28,36,0.7);
+      border-radius: 18px;
+      box-shadow: 0 2px 24px #00eaff22;
+      backdrop-filter: blur(8px);
+      border: 1.5px solid #00eaff;
+    ">
+      <i class="ph ph-envelope-simple" style="font-size:2.6em;color:#00eaff;margin-bottom:12px;"></i>
+      <h2 style="color:#00eaff;margin-bottom:16px;">Contactez-nous</h2>
+      <p style="font-size:1.13em;margin-bottom:22px;color:#eaf6fb;">
+        Un problème persistant ? Besoin d’aide personnalisée ?<br>
+        <b>Notre équipe vous répond rapidement !</b>
+      </p>
+      <a href="mailto:wilsonpascal708@gmail.com" class="cta-btn" style="margin-bottom:10px;">Envoyer un email</a>
+      <br>
+      <a href="ai-assistant.html" class="cta-btn" style="background:linear-gradient(90deg,#ff4081,#00eaff);margin-top:8px;">Utiliser l’Assistant IA</a>
+    </section>
+  </main>
 
   <footer>
     <p>© 2025 Windows Repair Platform | Développé par l'organisation windows-repair</p>
@@ -396,5 +445,3 @@
   </script>
 </body>
 </html>
-User-agent: *
-Allow: /
