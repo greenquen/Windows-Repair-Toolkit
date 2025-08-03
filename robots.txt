@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://greenquen.github.io/Windows-Repair-Toolkit/sitemap.xml
